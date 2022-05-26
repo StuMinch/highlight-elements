@@ -45,14 +45,16 @@ public class BasicBrowserTest {
         // Browse to google.com
         driver.navigate().to("https://www.google.com");
 
-        // Find Search and Logo elements
+        // Find Google Search Bar element
         WebElement q = driver.findElement(By.name("q"));
-        WebElement lnXdpd = driver.findElement(By.className("lnXdpd"));
 
         // Highlight Google Search Bar element
         highLighterMethod(driver, q);
 
-        // Highlight Google logo element
+        // Find Google Logo element
+        WebElement lnXdpd = driver.findElement(By.className("lnXdpd"));
+
+        // Highlight Google Logo element
         highLighterMethod(driver, lnXdpd);
 
         driver.quit();
