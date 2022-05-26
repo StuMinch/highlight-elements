@@ -3,9 +3,6 @@ import org.junit.Test;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.interactions.Action;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -15,7 +12,6 @@ import static org.junit.Assert.assertEquals;
 public class BasicBrowserTest {
 
     public RemoteWebDriver driver;
-    public WebDriverWait webDriverWait;
 
     // Create the Highlighter function
     public void highLighterMethod(WebDriver driver, WebElement element){
