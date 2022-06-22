@@ -2,11 +2,12 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class BasicBrowserTest {
+public class LocalGridTest {
 
     public RemoteWebDriver driver;
 
@@ -20,27 +21,23 @@ public class BasicBrowserTest {
     @Before
     public void setup() throws MalformedURLException {
 
+
+        FirefoxOptions browserOptions = new FirefoxOptions();
+        browserOptions.setCapability("platformName", "LINUX");
+        browserOptions.setCapability("browserName", "firefox");
+        browserOptions.setCapability("se:cdpEnabled", false);
+
+
+        /*
         ChromeOptions browserOptions = new ChromeOptions();
-        browserOptions.setPlatformName("Windows 10");
-        //browserOptions.setCapability("se:cdpEnabled", false);
+        browserOptions.setCapability("platformName", "LINUX");
+        browserOptions.setCapability("browserName", "chrome");
+        browserOptions.setCapability("se:cdpEnabled", false);
+        */
 
-        MutableCapabilities sauceOptions = new MutableCapabilities();
-        sauceOptions.setCapability("username", System.getenv("SAUCE_USERNAME"));
-        sauceOptions.setCapability("accessKey", System.getenv("SAUCE_ACCESS_KEY"));
-        sauceOptions.setCapability("se:name", "Highlight Browser Elements using Highlighter Method");
-        sauceOptions.setCapability("browserVersion", "latest");
-        sauceOptions.setCapability("seleniumVersion", "4.2.0");
-        browserOptions.setCapability("sauce:options", sauceOptions);
-
-        URL url = new URL("https://ondemand.us-west-1.saucelabs.com/wd/hub");
+        URL url = new URL("http://localhost:4444");
 
         driver = new RemoteWebDriver(url, browserOptions);
-        /*
-        driver = RemoteWebDriver.builder()
-                .oneOf(browserOptions)
-                .config(url)
-                .build();
-         */
 
     }
 
