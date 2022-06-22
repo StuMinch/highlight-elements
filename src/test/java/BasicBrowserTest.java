@@ -4,6 +4,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
+
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -25,17 +26,25 @@ public class BasicBrowserTest {
 
         ChromeOptions browserOptions = new ChromeOptions();
         browserOptions.setPlatformName("Windows 10");
+        browserOptions.setCapability("se:cdpEnabled", true);
 
         MutableCapabilities sauceOptions = new MutableCapabilities();
         sauceOptions.setCapability("username", System.getenv("SAUCE_USERNAME"));
         sauceOptions.setCapability("accessKey", System.getenv("SAUCE_ACCESS_KEY"));
         sauceOptions.setCapability("name", "Highlight Browser Elements using Highlighter Method");
         sauceOptions.setCapability("browserVersion", "latest");
+        sauceOptions.setCapability("seleniumVersion", "4.2.0");
         browserOptions.setCapability("sauce:options", sauceOptions);
 
         URL url = new URL("https://ondemand.us-west-1.saucelabs.com/wd/hub");
 
         driver = new RemoteWebDriver(url, browserOptions);
+        /*
+        driver = RemoteWebDriver.builder()
+                .oneOf(browserOptions)
+                .config(url)
+                .build();
+         */
 
     }
 
