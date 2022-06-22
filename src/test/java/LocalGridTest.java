@@ -22,22 +22,21 @@ public class LocalGridTest {
     public void setup() throws MalformedURLException {
 
 
-        FirefoxOptions browserOptions = new FirefoxOptions();
-        browserOptions.setCapability("platformName", "LINUX");
-        browserOptions.setCapability("browserName", "firefox");
-        browserOptions.setCapability("se:cdpEnabled", false);
+        FirefoxOptions firefox = new FirefoxOptions();
+        firefox.setCapability("platformName", "LINUX");
+        firefox.setCapability("browserName", "firefox");
+        firefox.setCapability("se:cdpEnabled", false);
 
 
-        /*
-        ChromeOptions browserOptions = new ChromeOptions();
-        browserOptions.setCapability("platformName", "LINUX");
-        browserOptions.setCapability("browserName", "chrome");
-        browserOptions.setCapability("se:cdpEnabled", false);
-        */
+        ChromeOptions chrome = new ChromeOptions();
+        chrome.setCapability("platformName", "LINUX");
+        chrome.setCapability("browserName", "chrome");
+        chrome.setCapability("se:cdpEnabled", false);
+
 
         URL url = new URL("http://localhost:4444");
 
-        driver = new RemoteWebDriver(url, browserOptions);
+        driver = new RemoteWebDriver(url, firefox);
 
     }
 
