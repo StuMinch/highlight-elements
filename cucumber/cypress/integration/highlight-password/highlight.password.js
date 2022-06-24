@@ -9,7 +9,7 @@ Then(`Highlight the password field`, () => {
       .then($password => {
         $password.css('border', '4px solid orange')
     })
-    cy.screenshot('Enter your password here')
+    cy.screenshot('Highlight Password')
         
 });
 
