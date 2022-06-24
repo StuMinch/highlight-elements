@@ -7,11 +7,11 @@ sauce:
   region: us-west-1
   concurrency: 2 # Controls how many suites are executed at the same time.
   metadata:
-    name: saucectl cypress cucumber example
+    name: Highlight Username and Password
     tags:
       - cucumber
       - example repo
-    build: Github Run $GITHUB_RUN_ID
+    build: Highlight Username and Password $SAUCE_BUILD_DATE
 docker:
   # Affects how test files are transferred to the docker container when using the docker mode.
   fileTransfer: copy # Choose between mount|copy.

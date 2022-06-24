@@ -1,6 +1,6 @@
 import { Given, Then } from "cypress-cucumber-preprocessor/steps";
 
-Given('Open login page', () => {
+Given('Open the login page', () => {
     cy.visit(`https://the-internet.herokuapp.com/login`);
 });  
    
