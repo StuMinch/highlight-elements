@@ -1,3 +1,4 @@
+import io.appium.java_client.android.AndroidDriver;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.*;
@@ -6,9 +7,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class BasicBrowserTest {
-
-    public RemoteWebDriver driver;
+public class BasicMobileBrowserTest {
 
     // Create the Highlighter function
     public void highLighterMethod(WebDriver driver, WebElement element){
@@ -20,30 +19,24 @@ public class BasicBrowserTest {
     @Before
     public void setup() throws MalformedURLException {
 
-        ChromeOptions browserOptions = new ChromeOptions();
-        browserOptions.setPlatformName("Windows 10");
-        //browserOptions.setCapability("se:cdpEnabled", false);
-
+        MutableCapabilities caps = new MutableCapabilities();
+        caps.setCapability("platformName", "Android");
+        caps.setCapability("browserName", "Chrome");
+        caps.setCapability("appium:deviceName", "Google Pixel 4a (5G) GoogleAPI Emulator");
+        caps.setCapability("appium:platformVersion", "12.0");
         MutableCapabilities sauceOptions = new MutableCapabilities();
+        sauceOptions.setCapability("appiumVersion", "1.22.1");
+        sauceOptions.setCapability("name", "Highlight elements on mobile browser");
         sauceOptions.setCapability("username", System.getenv("SAUCE_USERNAME"));
         sauceOptions.setCapability("accessKey", System.getenv("SAUCE_ACCESS_KEY"));
-        sauceOptions.setCapability("se:name", "Highlight Browser Elements using Highlighter Method");
-        sauceOptions.setCapability("browserVersion", "latest");
-        sauceOptions.setCapability("seleniumVersion", "4.2.0");
-        sauceOptions.setCapability("tunnelName", "oauth-stuart.minchington-eecfa_tunnel_name");
-        browserOptions.setCapability("sauce:options", sauceOptions);
+        caps.setCapability("sauce:options", sauceOptions);
 
-        URL url = new URL("https://ondemand.us-west-1.saucelabs.com/wd/hub");
-
-        driver = new RemoteWebDriver(url, browserOptions);
-        /*
-        driver = RemoteWebDriver.builder()
-                .oneOf(browserOptions)
-                .config(url)
-                .build();
-         */
+        URL url = new URL("https://ondemand.us-west-1.saucelabs.com:443/wd/hub");
+        AndroidDriver driver = new AndroidDriver(url, caps);
 
     }
+
+    public AndroidDriver driver;
 
     // Use Highlighter method on the Google search bar
     @Test
