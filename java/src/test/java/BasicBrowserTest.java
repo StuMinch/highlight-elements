@@ -21,14 +21,14 @@ public class BasicBrowserTest {
     public void setup() throws MalformedURLException {
 
         EdgeOptions browserOptions = new EdgeOptions();
-        browserOptions.setPlatformName("Windows 10");
+        browserOptions.setPlatformName("");
+        browserOptions.setBrowserVersion("89");
         //browserOptions.setCapability("se:cdpEnabled", false);
 
         MutableCapabilities sauceOptions = new MutableCapabilities();
         sauceOptions.setCapability("username", System.getenv("SAUCE_USERNAME"));
         sauceOptions.setCapability("accessKey", System.getenv("SAUCE_ACCESS_KEY"));
         sauceOptions.setCapability("se:name", "Highlight Browser Elements using Highlighter Method");
-        sauceOptions.setCapability("browserVersion", "latest");
         sauceOptions.setCapability("seleniumVersion", "4.2.0");
         //sauceOptions.setCapability("tunnelName", "oauth-stuart.minchington-eecfa_tunnel_name");
         browserOptions.setCapability("sauce:options", sauceOptions);
