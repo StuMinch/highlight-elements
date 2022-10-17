@@ -1,7 +1,7 @@
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.*;
-import org.openqa.selenium.edge.EdgeOptions;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -20,17 +20,16 @@ public class BasicBrowserTest {
     @Before
     public void setup() throws MalformedURLException {
 
-        EdgeOptions browserOptions = new EdgeOptions();
-        browserOptions.setPlatformName("");
-        browserOptions.setBrowserVersion("89");
+        ChromeOptions browserOptions = new ChromeOptions();
+        browserOptions.setPlatformName("Windows 10");
+        browserOptions.setBrowserVersion("latest");
         //browserOptions.setCapability("se:cdpEnabled", false);
 
         MutableCapabilities sauceOptions = new MutableCapabilities();
         sauceOptions.setCapability("username", System.getenv("SAUCE_USERNAME"));
         sauceOptions.setCapability("accessKey", System.getenv("SAUCE_ACCESS_KEY"));
+        sauceOptions.setCapability("tunnelName", System.getenv("SAUCE_TUNNEL"));
         sauceOptions.setCapability("se:name", "Highlight Browser Elements using Highlighter Method");
-        sauceOptions.setCapability("seleniumVersion", "4.2.0");
-        //sauceOptions.setCapability("tunnelName", "oauth-stuart.minchington-eecfa_tunnel_name");
         browserOptions.setCapability("sauce:options", sauceOptions);
 
         URL url = new URL("https://ondemand.us-west-1.saucelabs.com/wd/hub");
